@@ -11,15 +11,17 @@
 <body>
     <h1>Here are the Awesome Quotes!</h1>
     <div class="quote-card-container">
-        <% quoteDocuments.forEach(function (document) { %>
+        <% console.log(quoteDocuments); %> 
+        <% for (const document of quoteDocuments) { %>
             <div class="card">
                 <div class="card-body">
                     <h2 class="card-title"><%= document.name %></h2>
-                    <h4 class="card-subtitle text-muted">Created at <%= document.time %> on <%= document.date %></h4>
+                    <h6 class="card-subtitle text-muted">Created at <%= document.time %> on <%= document.date %></h6>
+                    <br><br>
                     <p class="card-text">&quot;<%= document.quote %>&quot;</p>
                 </div>
             </div>
-        <% }); %>
+        <% } %>
     </div>
 </body>
 </html>

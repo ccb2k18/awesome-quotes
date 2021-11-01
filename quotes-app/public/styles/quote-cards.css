@@ -6,15 +6,19 @@ h1 {
 
 .quote-card-container {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
 }
 
 .card {
-    box-shadow: 1em 1em 0.5em gray;
+    box-shadow: 0.5em 0.5em 0.5em gray;
+    margin: 1em;
 }
 
 .quote-card-container > .card {
     width: 30%;
     min-width: 300px;
+    max-width: 900px;
     flex-grow: 2;
 }

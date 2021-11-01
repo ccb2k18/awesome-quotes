@@ -49,7 +49,7 @@ class QuoteModel {
     getTime() {
         const hour = this.date.getHours();
         const minutes = this.date.getMinutes();
-        let timeString = `${hour % 12  || 12}:${minutes}`;
+        let timeString = `${hour % 12  || 12}:${minutes < 10 ? "0"+minutes : minutes}`;
         if (hour < 12) {
             timeString += " AM";
         } else {
@@ -77,7 +77,8 @@ class QuoteModel {
      * @param {mongoDB.Collection<mongoDB.Document>} collection
      */
     static async getAll(collection) {
-        return await collection.find();
+        const documents = await collection.find();
+        return await documents.toArray();
     }
 }
 
