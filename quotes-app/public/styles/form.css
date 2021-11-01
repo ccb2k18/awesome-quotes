@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+    margin: 1em;
+}
+
+.form {
+    width: 50%;
+    min-width: 300px;
+    margin: 1em auto;
+    position: relative;
+    transform: translateY(25%);
+}
+
+.form  * {
+    margin: 0.5em;
+}

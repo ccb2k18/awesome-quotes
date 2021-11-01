@@ -1,0 +1,20 @@
+
+h1 {
+    text-align: center;
+    margin: 1em;
+}
+
+.quote-card-container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.card {
+    box-shadow: 1em 1em 0.5em gray;
+}
+
+.quote-card-container > .card {
+    width: 30%;
+    min-width: 300px;
+    flex-grow: 2;
+}

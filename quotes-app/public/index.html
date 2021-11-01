@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/form.css">
+    <title>Awesome Quotes App</title>
+</head>
+<body>
+    <h1>Submit an Awesome Quote!</h1>
+    <form action="#" class="form" onsubmit="sendData(event)" method="POST">
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="quote">The Quote</label>
+            <textarea name="quote" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+        <div class="alert invisible" id="validation-message">
+        </div>
+        <input type="submit" value="Add my Quote!" class="btn btn-primary">
+        <input type="button" value="Skip to Quotes!" class="btn btn-success" onclick="goToQuotes()">
+    </form>
+    <script type="text/javascript">
+    const validationMessage = document.getElementById("validation-message");
+    /**
+     * @param {SubmitEvent} event
+     */
+    async function sendData(event) {
+        event.preventDefault();
+        const res = await fetch("/quotes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: event.srcElement[0].value,
+                quote: event.srcElement[1].value,
+            })
+        });
+        const body = await res.json();
+        validationMessage.innerText = body.message;
+        validationMessage.classList.remove("invisible");
+        if (body.error) {
+            validationMessage.classList.remove("alert-success");
+            validationMessage.classList.add("alert-danger");
+        } else {
+            validationMessage.classList.remove("alert-danger");
+            validationMessage.classList.add("alert-success");
+        }
+    }
+
+    function goToQuotes() {
+        location.href = "/quotes";
+    }
+    </script>
+</body>
+</html>
